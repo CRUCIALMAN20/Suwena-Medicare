@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suwema Medicare - Hospital Management System</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <i class="fas fa-hospital-alt"></i>
+                <h1>Suwema Medicare</h1>
+            </div>
+            <div class="user-info">
+                <span>Welcome, Admin</span>
+                <i class="fas fa-user-circle"></i>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="sidebar">
+            <ul class="nav-menu">
+                <li class="nav-item active" data-section="dashboard">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                </li>
+                <li class="nav-item" data-section="patients">
+                    <i class="fas fa-user-plus"></i>
+                    <span>Patient Registration</span>
+                </li>
+                <li class="nav-item" data-section="inventory">
+                    <i class="fas fa-boxes"></i>
+                    <span>Inventory Management</span>
+                </li>
+                <li class="nav-item" data-section="lab">
+                    <i class="fas fa-flask"></i>
+                    <span>Lab Investigations</span>
+                </li>
+                <li class="nav-item" data-section="appointments">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Appointments</span>
+                </li>
+                <li class="nav-item" data-section="services">
+                    <i class="fas fa-stethoscope"></i>
+                    <span>Services & Pricing</span>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="section active">
+                <h2>Dashboard</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <i class="fas fa-users"></i>
+                        <div class="stat-info">
+                            <h3>Total Patients</h3>
+                            <span class="stat-number" id="total-patients">0</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-calendar-check"></i>
+                        <div class="stat-info">
+                            <h3>Today's Appointments</h3>
+                            <span class="stat-number" id="today-appointments">0</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-flask"></i>
+                        <div class="stat-info">
+                            <h3>Pending Lab Tests</h3>
+                            <span class="stat-number" id="pending-tests">0</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <div class="stat-info">
+                            <h3>Low Stock Items</h3>
+                            <span class="stat-number" id="low-stock">0</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Patient Registration Section -->
+            <section id="patients" class="section">
+                <h2>Patient Registration</h2>
+                <div class="form-container">
+                    <form id="patient-form" class="patient-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="patient-id">Patient ID</label>
+                                <input type="text" id="patient-id" name="patientId" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="registration-date">Registration Date</label>
+                                <input type="date" id="registration-date" name="registrationDate" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="first-name">First Name</label>
+                                <input type="text" id="first-name" name="firstName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="last-name">Last Name</label>
+                                <input type="text" id="last-name" name="lastName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="gender">Gender</label>
+                                <select id="gender" name="gender" required>
+                                    <option value="">Select Gender</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="date-of-birth">Date of Birth</label>
+                                <input type="date" id="date-of-birth" name="dateOfBirth" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" name="phone" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="address">Address</label>
+                            <textarea id="address" name="address" rows="3" required></textarea>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="emergency-contact">Emergency Contact</label>
+                                <input type="text" id="emergency-contact" name="emergencyContact" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="emergency-phone">Emergency Phone</label>
+                                <input type="tel" id="emergency-phone" name="emergencyPhone" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="medical-history">Medical History</label>
+                            <textarea id="medical-history" name="medicalHistory" rows="4"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="allergies">Known Allergies</label>
+                            <textarea id="allergies" name="allergies" rows="2"></textarea>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">Register Patient</button>
+                            <button type="reset" class="btn btn-secondary">Clear Form</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="patients-list">
+                    <h3>Registered Patients</h3>
+                    <div class="search-bar">
+                        <input type="text" id="patient-search" placeholder="Search patients...">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <div class="table-container">
+                        <table id="patients-table">
+                            <thead>
+                                <tr>
+                                    <th>Patient ID</th>
+                                    <th>Name</th>
+                                    <th>Age</th>
+                                    <th>Gender</th>
+                                    <th>Phone</th>
+                                    <th>Registration Date</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="patients-tbody">
+                                <!-- Patient data will be inserted here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Inventory Section -->
+            <section id="inventory" class="section">
+                <h2>Inventory Management</h2>
+                <div class="inventory-controls">
+                    <button class="btn btn-primary" id="add-item-btn">Add New Item</button>
+                    <div class="search-filter">
+                        <input type="text" id="inventory-search" placeholder="Search inventory...">
+                        <select id="category-filter">
+                            <option value="">All Categories</option>
+                            <option value="medications">Medications</option>
+                            <option value="equipment">Equipment</option>
+                            <option value="supplies">Medical Supplies</option>
+                            <option value="consumables">Consumables</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="inventory-stats">
+                    <div class="stat-card">
+                        <h4>Total Items</h4>
+                        <span id="total-items">0</span>
+                    </div>
+                    <div class="stat-card">
+                        <h4>Low Stock Alerts</h4>
+                        <span id="low-stock-count">0</span>
+                    </div>
+                    <div class="stat-card">
+                        <h4>Out of Stock</h4>
+                        <span id="out-of-stock">0</span>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <table id="inventory-table">
+                        <thead>
+                            <tr>
+                                <th>Item Code</th>
+                                <th>Item Name</th>
+                                <th>Category</th>
+                                <th>Current Stock</th>
+                                <th>Min. Stock Level</th>
+                                <th>Unit Price</th>
+                                <th>Supplier</th>
+                                <th>Last Updated</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="inventory-tbody">
+                            <!-- Inventory data will be inserted here -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Add/Edit Item Modal -->
+                <div id="item-modal" class="modal">
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <h3 id="modal-title">Add New Item</h3>
+                        <form id="item-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="item-code">Item Code</label>
+                                    <input type="text" id="item-code" name="itemCode" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="item-name">Item Name</label>
+                                    <input type="text" id="item-name" name="itemName" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="item-category">Category</label>
+                                    <select id="item-category" name="category" required>
+                                        <option value="">Select Category</option>
+                                        <option value="medications">Medications</option>
+                                        <option value="equipment">Equipment</option>
+                                        <option value="supplies">Medical Supplies</option>
+                                        <option value="consumables">Consumables</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="current-stock">Current Stock</label>
+                                    <input type="number" id="current-stock" name="currentStock" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="min-stock">Minimum Stock Level</label>
+                                    <input type="number" id="min-stock" name="minStock" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="unit-price">Unit Price</label>
+                                    <input type="number" id="unit-price" name="unitPrice" step="0.01" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="supplier">Supplier</label>
+                                <input type="text" id="supplier" name="supplier" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="description">Description</label>
+                                <textarea id="description" name="description" rows="3"></textarea>
+                            </div>
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary">Save Item</button>
+                                <button type="button" class="btn btn-secondary" id="cancel-item">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Lab Investigations Section -->
+            <section id="lab" class="section">
+                <h2>Lab Investigations</h2>
+                <div class="lab-controls">
+                    <button class="btn btn-primary" id="add-test-btn">Add New Test</button>
+                    <button class="btn btn-secondary" id="manage-test-types-btn">Manage Test Types</button>
+                </div>
+
+                <div class="lab-stats">
+                    <div class="stat-card">
+                        <h4>Pending Tests</h4>
+                        <span id="pending-lab-tests">0</span>
+                    </div>
+                    <div class="stat-card">
+                        <h4>Completed Today</h4>
+                        <span id="completed-today">0</span>
+                    </div>
+                    <div class="stat-card">
+                        <h4>Total Revenue</h4>
+                        <span id="lab-revenue">$0</span>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <table id="lab-table">
+                        <thead>
+                            <tr>
+                                <th>Test ID</th>
+                                <th>Patient Name</th>
+                                <th>Test Type</th>
+                                <th>Date Ordered</th>
+                                <th>Status</th>
+                                <th>Price</th>
+                                <th>Doctor</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="lab-tbody">
+                            <!-- Lab test data will be inserted here -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Test Types Management -->
+                <div class="test-types-section">
+                    <h3>Available Test Types</h3>
+                    <div class="table-container">
+                        <table id="test-types-table">
+                            <thead>
+                                <tr>
+                                    <th>Test Code</th>
+                                    <th>Test Name</th>
+                                    <th>Category</th>
+                                    <th>Price</th>
+                                    <th>Normal Range</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="test-types-tbody">
+                                <!-- Test types will be inserted here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Appointments Section -->
+            <section id="appointments" class="section">
+                <h2>Appointment Management</h2>
+                <div class="appointment-controls">
+                    <button class="btn btn-primary" id="schedule-appointment-btn">Schedule Appointment</button>
+                    <div class="date-filter">
+                        <input type="date" id="appointment-date-filter">
+                        <select id="doctor-filter">
+                            <option value="">All Doctors</option>
+                            <option value="dr-smith">Dr. Smith</option>
+                            <option value="dr-johnson">Dr. Johnson</option>
+                            <option value="dr-williams">Dr. Williams</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="appointment-stats">
+                    <div class="stat-card">
+                        <h4>Today's Appointments</h4>
+                        <span id="today-appointment-count">0</span>
+                    </div>
+                    <div class="stat-card">
+                        <h4>Upcoming This Week</h4>
+                        <span id="week-appointments">0</span>
+                    </div>
+                    <div class="stat-card">
+                        <h4>Cancelled Today</h4>
+                        <span id="cancelled-today">0</span>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <table id="appointments-table">
+                        <thead>
+                            <tr>
+                                <th>Appointment ID</th>
+                                <th>Patient Name</th>
+                                <th>Doctor</th>
+                                <th>Date</th>
+                                <th>Time</th>
+                                <th>Type</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="appointments-tbody">
+                            <!-- Appointment data will be inserted here -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Services & Pricing Section -->
+            <section id="services" class="section">
+                <h2>Services & Pricing</h2>
+                <div class="services-controls">
+                    <button class="btn btn-primary" id="add-service-btn">Add New Service</button>
+                    <div class="service-filter">
+                        <select id="service-category-filter">
+                            <option value="">All Categories</option>
+                            <option value="consultation">Consultation</option>
+                            <option value="procedure">Procedures</option>
+                            <option value="surgery">Surgery</option>
+                            <option value="diagnostic">Diagnostic</option>
+                            <option value="therapy">Therapy</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <table id="services-table">
+                        <thead>
+                            <tr>
+                                <th>Service Code</th>
+                                <th>Service Name</th>
+                                <th>Category</th>
+                                <th>Price</th>
+                                <th>Duration (mins)</th>
+                                <th>Department</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="services-tbody">
+                            <!-- Services data will be inserted here -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Service Modal -->
+                <div id="service-modal" class="modal">
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <h3 id="service-modal-title">Add New Service</h3>
+                        <form id="service-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="service-code">Service Code</label>
+                                    <input type="text" id="service-code" name="serviceCode" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="service-name">Service Name</label>
+                                    <input type="text" id="service-name" name="serviceName" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="service-category">Category</label>
+                                    <select id="service-category" name="category" required>
+                                        <option value="">Select Category</option>
+                                        <option value="consultation">Consultation</option>
+                                        <option value="procedure">Procedures</option>
+                                        <option value="surgery">Surgery</option>
+                                        <option value="diagnostic">Diagnostic</option>
+                                        <option value="therapy">Therapy</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="service-price">Price</label>
+                                    <input type="number" id="service-price" name="price" step="0.01" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="service-duration">Duration (minutes)</label>
+                                    <input type="number" id="service-duration" name="duration" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="service-department">Department</label>
+                                    <select id="service-department" name="department" required>
+                                        <option value="">Select Department</option>
+                                        <option value="cardiology">Cardiology</option>
+                                        <option value="neurology">Neurology</option>
+                                        <option value="orthopedics">Orthopedics</option>
+                                        <option value="pediatrics">Pediatrics</option>
+                                        <option value="general">General Medicine</option>
+                                        <option value="surgery">Surgery</option>
+                                        <option value="radiology">Radiology</option>
+                                        <option value="laboratory">Laboratory</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="service-description">Description</label>
+                                <textarea id="service-description" name="description" rows="3"></textarea>
+                            </div>
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary">Save Service</button>
+                                <button type="button" class="btn btn-secondary" id="cancel-service">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
